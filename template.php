@@ -12,7 +12,6 @@ $user = wp_get_current_user();
 	<link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
 	<link rel="icon" href="<?php echo get_site_icon_url(); ?>" sizes="192x192" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
-	<?php vuetifused_header_content_extracted(); ?>
 	<style>
 	[v-cloak] > * {
 		display:none;
@@ -252,13 +251,9 @@ $user = wp_get_current_user();
 		plugins: [],
 		themes: [],
 		snackbar: { show: false, message: "" },
-		wp_nonce: "",
+		wp_nonce: "<?php echo wp_create_nonce( 'wp_rest' ) ?>",
 	},
 	mounted() {
-		if ( typeof wpApiSettings != "undefined" ) {
-			this.wp_nonce = wpApiSettings.nonce
-		}
-		//this.fetchContent()
 		this.fetchPlugins()
 		this.fetchThemes()
 	},

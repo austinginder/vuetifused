@@ -297,22 +297,3 @@ function vuetifused_themes_func( WP_REST_Request $request ) {
     return array_values( $themes );
 
 }
-
-function vuetifused_head_content() {
-    ob_start();
-    do_action('wp_head');
-    return ob_get_clean();
-}
-
-function vuetifused_header_content_extracted() {
-    $output = "<script type='text/javascript'>\n/* <![CDATA[ */\n";
-	$head   = vuetifused_head_content();
-	preg_match_all('/(var wpApiSettings.+)/', $head, $results );
-	if ( isset( $results ) && $results[0] ) {
-		foreach( $results[0] as $match ) {
-			$output = $output . $match . "\n";
-		}
-	}
-	$output = $output . "</script>\n";
-	echo $output;
-}
