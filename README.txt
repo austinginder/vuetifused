@@ -17,9 +17,9 @@ A Vuetify infused WordPress admin experience.
 
 == Installation ==
 
-1. Upload `/vuetifused/` to the `/wp-content/plugins/` directory.
-2. Activate the plugin through the 'Plugins' menu in WordPress.
-3. Each user may enter Vuetifused from the admin bar by selecting 'Enable Vuetifused'.
+1. Download latest release [zip from Github](https://github.com/austinginder/vuetifused/releases).
+2. On WordPress backend select "Plugins" -> "Add New" -> "Upload Plugin" and drag and drop the downloaded zip onto "Choose File" then "Install Now".
+3. Select "Enable Vuetifused" from the admin bar. This is enabled per user and can be exited at anytime by selecting exit icon in the top right.
 
 == Changelog ==
 = 1.0.0: Dec 26 2020
