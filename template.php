@@ -233,7 +233,7 @@ $user = wp_get_current_user();
 </v-app>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/axios@0.21.1/dist/axios.min.js"></script>
-<script src="/wp-content/plugins/<?php echo basename( plugin_dir_path(__FILE__) ); ?>/js/script.js"></script>
+<script src="<?php echo plugin_dir_url( __FILE__ ); ?>js/script.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
