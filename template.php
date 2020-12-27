@@ -33,6 +33,7 @@ $user = wp_get_current_user();
 <v-app-bar app dark style="left:0px" color="primary">
 	<v-toolbar-title><?php echo get_bloginfo( 'name' ) ?></v-toolbar-title>
 	<v-spacer></v-spacer>
+	<div class="flex" style="opacity:0;"><textarea id="clipboard" style="height:1px;display:flex;cursor:default"></textarea></div>
 	<v-tooltip bottom>
 	<template v-slot:activator="{ on, attrs }">
 		<v-btn v-bind="attrs" v-on="on" icon href="<?php echo home_url(); ?>">
@@ -152,7 +153,7 @@ $user = wp_get_current_user();
 			<v-col style="max-width:150px"><v-img :src="item.thumbnail" width="150px" v-if="item.thumbnail"></v-img></v-col>
 			<v-col class="align-self-center my-1">
 				<span class="body-1">{{ item.post_title }}</span><br />
-				<span class="caption"><v-btn small depressed><v-icon small class="mr-1">mdi-content-copy</v-icon> {{ item.post_name }}</span></v-btn>
+				<span class="caption"><v-btn small depressed @click="copyText( item.post_name )"><v-icon small class="mr-1">mdi-content-copy</v-icon> {{ item.post_name }}</span></v-btn>
 			</v-col>
 		</v-row>
 	</template>
@@ -178,7 +179,7 @@ $user = wp_get_current_user();
 			<v-col style="max-width:150px"><v-img :src="item.screenshot" width="150px" v-if="item.screenshot"></v-img></v-col>
 			<v-col class="align-self-center my-1">
 				<span class="body-1">{{ item.name }}</span><br />
-				<span class="caption"><v-btn small depressed><v-icon small class="mr-1">mdi-content-copy</v-icon> {{ item.slug }}</v-btn></span>
+				<span class="caption"><v-btn small depressed @click="copyText( item.slug )"><v-icon small class="mr-1">mdi-content-copy</v-icon> {{ item.slug }}</v-btn></span>
 			</v-col>
 		</v-row>
 	</template>
@@ -206,7 +207,7 @@ $user = wp_get_current_user();
 		<v-row>
 			<v-col class="align-self-center my-1">
 				<span class="body-1" v-show="item.name">{{ item.name }}<br /></span>
-				<span class="caption"><v-btn small depressed><v-icon small class="mr-1">mdi-content-copy</v-icon> {{ item.slug }}</span></v-btn>
+				<span class="caption"><v-btn small depressed @click="copyText( item.slug )"><v-icon small class="mr-1">mdi-content-copy</v-icon> {{ item.slug }}</span></v-btn>
 			</v-col>
 		</v-row>
 	</template>
@@ -266,6 +267,15 @@ $user = wp_get_current_user();
       },
     },
 	methods: {
+		copyText( value ) {
+			var clipboard = document.getElementById("clipboard");
+			clipboard.value = value;
+			clipboard.focus()
+			clipboard.select()
+			document.execCommand("copy");
+			this.snackbar.message = "Copied to clipboard.";
+			this.snackbar.show = true;
+		},
 		togglePlugin( plugin ) {
 			if ( plugin.status == true ) {
 				message = `Plugin "${plugin.name}" activated.`
