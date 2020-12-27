@@ -58,7 +58,7 @@ function vuetifused_admin_toolbar( $admin_bar ) {
     }
 
     $admin_bar->add_menu( [
-        'id'    => 'wp-freighter-exit',
+        'id'    => 'vuetifused-enable',
         'title' => '<span class="ab-icon dashicons dashicons-welcome-view-site"></span>Enable Vuetifused',
         'href'  => '/wp-admin/admin-ajax.php?action=vuetifused_ajax&command=enable',
     ] );
